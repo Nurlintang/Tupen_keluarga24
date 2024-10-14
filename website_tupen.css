@@ -1,0 +1,63 @@
+
+        /* Pengaturan dasar tampilan website */
+        body {
+            background-color: #1e1e1e; /* Warna latar belakang gelap */
+            color: #f0f0f0; /* Warna teks putih */
+            font-family: Arial, sans-serif;
+            line-height: 2;
+        }
+
+        /* Pengaturan untuk header */
+        header {
+            background-color: #ff6600; /* Warna oranye */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #333;
+        }
+
+        header h1, header h2, header h3 {
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Konten */
+        .container {
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ff6600;
+            margin-top: 20px;
+        }
+
+        /* Pengaturan tabel */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #f0f0f0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ff6600;
+            color: #fff;
+        }
+
+        /* Link */
+        a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
