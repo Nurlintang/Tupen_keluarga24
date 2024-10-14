@@ -5,44 +5,29 @@ document.addEventListener('contextmenu', function(e) {
 
 // Mencegah kombinasi tombol Ctrl+C, Cmd+C di iOS dan desktop
 document.addEventListener('keydown', function(e) {
+    // Mencegah Ctrl/Cmd + C (copy)
     if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+X, Cmd+X
+    // Mencegah Ctrl/Cmd + X (cut)
     if ((e.ctrlKey || e.metaKey) && (e.key === 'x' || e.key === 'X')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+V, Cmd+V
+    // Mencegah Ctrl/Cmd + V (paste)
     if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'V')) {
         e.preventDefault();
     }
 
-    // Cegah F12 (untuk membuka DevTools)
-    if (e.key === 'F12') {
+    // Mencegah shortcut F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J untuk membuka Developer Tools
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
         e.preventDefault();
     }
 
-    // Cegah Ctrl+Shift+I (untuk membuka DevTools di Chrome)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+    // Mencegah Ctrl + U (untuk melihat sumber halaman)
+    if ((e.ctrlKey || e.metaKey) && e.key === 'U') {
         e.preventDefault();
-    }
-
-    // Cegah Ctrl+Shift+C (untuk inspect element di Chrome)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
-        e.preventDefault();
-    }
-
-    // Cegah Ctrl+Shift+J (untuk membuka console di Chrome)
-    if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
-        e.preventDefault();
-    }
-    
-    // Cegah Ctrl+U (untuk melihat sumber halaman)
-    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
-        e.preventDefault();
-    }
     }
 });
 
