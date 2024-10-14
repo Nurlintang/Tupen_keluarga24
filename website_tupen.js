@@ -19,9 +19,30 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 
-    // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
-    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+    // Cegah F12 (untuk membuka DevTools)
+    if (e.key === 'F12') {
         e.preventDefault();
+    }
+
+    // Cegah Ctrl+Shift+I (untuk membuka DevTools di Chrome)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+        e.preventDefault();
+    }
+
+    // Cegah Ctrl+Shift+C (untuk inspect element di Chrome)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+    }
+
+    // Cegah Ctrl+Shift+J (untuk membuka console di Chrome)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+    }
+    
+    // Cegah Ctrl+U (untuk melihat sumber halaman)
+    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+    }
     }
 });
 
