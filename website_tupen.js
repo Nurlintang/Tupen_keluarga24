@@ -3,23 +3,23 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
 
-// Mencegah kombinasi tombol Ctrl+C (Copy) dan Cmd+C di MacOS (Safari)
+// Mencegah kombinasi tombol Ctrl+C, Cmd+C di iOS (Safari)
 document.addEventListener('keydown', function(e) {
     if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+X (Cut) dan Cmd+X di MacOS (Safari)
+    // Mencegah kombinasi tombol Ctrl+X, Cmd+X di iOS (Safari)
     if ((e.ctrlKey || e.metaKey) && (e.key === 'x' || e.key === 'X')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+V (Paste) dan Cmd+V di MacOS (Safari)
+    // Mencegah kombinasi tombol Ctrl+V, Cmd+V di iOS (Safari)
     if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'V')) {
         e.preventDefault();
     }
 
-    // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C di semua browser, termasuk Safari
+    // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C, dan Ctrl+U di semua browser termasuk Safari iOS
     if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
         e.preventDefault();
     }
@@ -69,3 +69,31 @@ window.addEventListener('resize', function() {
         throw new Error('DevTools is open');
     }
 });
+
+// Mencegah gesture sentuh pada layar iPhone dan perangkat mobile
+document.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+}, { passive: false });
+
+// Mencegah zoom dan pinch di perangkat mobile
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+});
+
+// Mencegah zoom dan pinch pada iPhone dan perangkat mobile lainnya
+document.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+}, { passive: false });
+
+// Menghindari zoom dengan menonaktifkan pinching zoom pada perangkat mobile
+if (window.matchMedia('(pointer: coarse)').matches) {
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    document.addEventListener('gesturestart', function(e) {
+        e.preventDefault();
+    });
+}
