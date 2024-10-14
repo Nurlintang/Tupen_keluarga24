@@ -20,9 +20,12 @@ document.addEventListener('keydown', function(e) {
     }
 
     // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C di semua browser, termasuk Safari
-    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'c' || e.key === 'j')) || (e.ctrlKey && e.key === 'u')) {
         e.preventDefault();
     }
+    // Cegah Ctrl+U (untuk melihat sumber halaman)
+    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
 });
 
 // Mencegah menyorot (highlight) teks dengan mouse dan keyboard
