@@ -3,23 +3,23 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
 
-// Mencegah kombinasi tombol Ctrl+C, Cmd+C di iOS (Safari)
+// Mencegah kombinasi tombol Ctrl+C, Cmd+C di iOS dan desktop
 document.addEventListener('keydown', function(e) {
     if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+X, Cmd+X di iOS (Safari)
+    // Mencegah kombinasi tombol Ctrl+X, Cmd+X
     if ((e.ctrlKey || e.metaKey) && (e.key === 'x' || e.key === 'X')) {
         e.preventDefault();
     }
 
-    // Mencegah kombinasi tombol Ctrl+V, Cmd+V di iOS (Safari)
+    // Mencegah kombinasi tombol Ctrl+V, Cmd+V
     if ((e.ctrlKey || e.metaKey) && (e.key === 'v' || e.key === 'V')) {
         e.preventDefault();
     }
 
-    // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C, dan Ctrl+U di semua browser termasuk Safari iOS
+    // Mencegah shortcut seperti F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
     if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
         e.preventDefault();
     }
@@ -96,4 +96,30 @@ if (window.matchMedia('(pointer: coarse)').matches) {
     document.addEventListener('gesturestart', function(e) {
         e.preventDefault();
     });
+}
+
+// Memperketat deteksi untuk pembukaan DevTools di perangkat mobile
+(function() {
+    const checkDevTools = () => {
+        const threshold = 100;  // Batas perubahan ukuran jendela untuk mendeteksi DevTools terbuka
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const ratio = width / height;
+
+        if (width < 500 || (ratio < 0.5 && width > height)) {
+            document.body.innerHTML = 'Inspecting is disabled!';
+            throw new Error('DevTools is open');
+        }
+    };
+
+    window.addEventListener('resize', checkDevTools);
+    window.addEventListener('orientationchange', checkDevTools);
+})();
+
+// Cegah zooming pada iOS
+if (typeof document !== 'undefined') {
+    const metaTag = document.createElement('meta');
+    metaTag.name = "viewport";
+    metaTag.content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+    document.getElementsByTagName('head')[0].appendChild(metaTag);
 }
